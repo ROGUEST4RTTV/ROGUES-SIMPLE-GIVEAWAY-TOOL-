@@ -1,3 +1,11 @@
+/* 
+==================================================
+   Giveaway Tool Script
+   Created by: ROGUEST4R on Twitch
+   https://twitch.tv/ROGUEST4R
+==================================================
+*/
+
 let names = [];
 
 function addEntry() {
@@ -26,7 +34,7 @@ function pickWinner() {
   let intervalTime = 100; // change name every 100ms
   let elapsed = 0;
 
-  winnerDiv.classList.remove("pulse"); // remove animation if previously applied
+  winnerDiv.classList.remove("pulse"); // remove previous animation
 
   const rollInterval = setInterval(() => {
     const randomName = names[Math.floor(Math.random() * names.length)];
@@ -43,3 +51,11 @@ function pickWinner() {
     }
   }, intervalTime);
 }
+
+// ✅ Listen for Enter key in the input box
+document.getElementById("nameInput").addEventListener("keydown", function(event) {
+  if (event.key === "Enter") {
+    event.preventDefault(); // prevent form submission / page reload
+    addEntry();
+  }
+});
