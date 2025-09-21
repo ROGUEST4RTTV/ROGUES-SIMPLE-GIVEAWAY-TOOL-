@@ -45,8 +45,7 @@ function pickWinner() {
       clearInterval(rollInterval);
       const finalWinner = names[Math.floor(Math.random() * names.length)];
       winnerDiv.innerText = "🎉 Winner: " + finalWinner + " 🎉";
-      // Trigger pop & pulse animation
-      void winnerDiv.offsetWidth; // force reflow
+      void winnerDiv.offsetWidth; 
       winnerDiv.classList.add("pulse");
     }
   }, intervalTime);
@@ -62,12 +61,14 @@ document.getElementById("nameInput").addEventListener("keydown", function(event)
 
 // ✅ Reset all entries and winner
 function resetEntries() {
-  if (names.length === 0) return; // nothing to reset
+  if (names.length === 0 && !document.getElementById("winner").innerText) return; 
   const confirmed = confirm("Are you sure you want to reset all entries?");
   if (confirmed) {
-    names = [];
-    updateEntries();
-    document.getElementById("winner").innerText = "";
+    names = []; 
+    updateEntries(); 
+    const winnerDiv = document.getElementById("winner");
+    winnerDiv.innerText = ""; 
+    winnerDiv.classList.remove("pulse"); 
   }
 }
 
