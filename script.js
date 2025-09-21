@@ -55,7 +55,19 @@ function pickWinner() {
 // ✅ Listen for Enter key in the input box
 document.getElementById("nameInput").addEventListener("keydown", function(event) {
   if (event.key === "Enter") {
-    event.preventDefault(); // prevent form submission / page reload
+    event.preventDefault();
     addEntry();
   }
 });
+
+// ✅ Reset all entries and winner
+function resetEntries() {
+  if (names.length === 0) return; // nothing to reset
+  const confirmed = confirm("Are you sure you want to reset all entries?");
+  if (confirmed) {
+    names = [];
+    updateEntries();
+    document.getElementById("winner").innerText = "";
+  }
+}
+
